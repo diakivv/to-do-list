@@ -16,7 +16,11 @@ class Task extends Component {
           }
         />
         <Text style={styles.description}>{this.props.description}</Text>
-        <Button color="#F44336" onPress={() => {}} title="Delete" />
+        <Button
+          color="#F44336"
+          onPress={() => this.props.onDelete(this.props.id)}
+          title="Delete"
+        />
       </View>
     );
   }
