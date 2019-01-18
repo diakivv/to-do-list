@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
+import Header from "./components/header";
 import TaskList from "./components/taskList";
 
 export default class App extends Component {
   render() {
     return (
-      <View style={styles.taskList}>
+      <View style={styles.container}>
+        <Header />
         <TaskList />
       </View>
     );
@@ -13,11 +15,11 @@ export default class App extends Component {
 }
 
 const styles = StyleSheet.create({
-  taskList: {
+  container: {
     flex: 1,
     flexDirection: "column",
-    justifyContent: "space-around",
-    alignItems: "center",
+    justifyContent: "flex-start",
+    //alignItems: "center",
     backgroundColor: "#D9D9D9"
   },
   welcome: {

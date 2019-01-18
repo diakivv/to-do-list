@@ -6,7 +6,8 @@ class TaskList extends Component {
   state = {
     tasks: [
       { id: "1", description: "Call mum" },
-      { id: "2", description: "Walk dog" }
+      { id: "2", description: "Walk dog" },
+      { id: "3", description: "Do laundry" }
     ]
   };
 
@@ -19,7 +20,7 @@ class TaskList extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <FlatList
           //style={styles.container}
           data={this.state.tasks}
@@ -39,9 +40,9 @@ class TaskList extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 9,
     flexDirection: "column",
-    justifyContent: "flex-start",
+    justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: "#D9D9D9"
   }
