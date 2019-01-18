@@ -3,33 +3,22 @@ import { FlatList, StyleSheet, View } from "react-native";
 import Task from "./task";
 
 class TaskList extends Component {
-  state = {
-    tasks: [
-      { id: "1", description: "Call mum" },
-      { id: "2", description: "Walk dog" },
-      { id: "3", description: "Do laundry" }
-    ]
-  };
+  state = {};
 
   _keyExtractor = (item, index) => item.id;
-
-  handleDelete = taskId => {
-    const tasks = this.state.tasks.filter(t => t.id !== taskId);
-    this.setState({ tasks: tasks });
-  };
 
   render() {
     return (
       <View style={styles.container}>
         <FlatList
           //style={styles.container}
-          data={this.state.tasks}
+          data={this.props.tasks}
           keyExtractor={this._keyExtractor}
           renderItem={({ item }) => (
             <Task
               id={item.id}
               description={item.description}
-              onDelete={this.handleDelete}
+              onDelete={this.props.onDelete}
             />
           )}
         />

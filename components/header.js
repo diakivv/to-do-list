@@ -19,7 +19,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#388E3C"
+    backgroundColor: "#388E3C",
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8
   },
   text: {
     fontSize: 25,
