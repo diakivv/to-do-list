@@ -8,9 +8,9 @@ class ToDoList extends Component {
   state = {
     currentId: 3,
     tasks: [
-      { id: "1", description: "Call mum" },
-      { id: "2", description: "Walk dog" },
-      { id: "3", description: "Do laundry" }
+      { id: 1, description: "Call mum", isCompleted: false },
+      { id: 2, description: "Walk dog", isCompleted: false },
+      { id: 3, description: "Do laundry", isCompleted: false }
     ]
   };
 
@@ -28,11 +28,23 @@ class ToDoList extends Component {
     this.setState({ tasks: tasks });
   };
 
+  handleDoTask = taskId => {
+    const tasks = [...this.state.tasks];
+    const index = tasks.findIndex(t => t.id == taskId);
+    tasks[index] = { ...tasks[index] };
+    tasks[index].isCompleted = !tasks[index].isCompleted;
+    this.setState({ tasks: tasks });
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <Header />
-        <TaskList tasks={this.state.tasks} onDelete={this.handleDelete} />
+        <TaskList
+          tasks={this.state.tasks}
+          onDelete={this.handleDelete}
+          onDoTask={this.handleDoTask}
+        />
         <TaskInput onAddTask={this.handleAddTask} />
       </View>
     );

@@ -5,7 +5,7 @@ import Task from "./task";
 class TaskList extends Component {
   state = {};
 
-  _keyExtractor = (item, index) => item.id;
+  _keyExtractor = (item, index) => item.id.toString();
 
   render() {
     return (
@@ -18,7 +18,9 @@ class TaskList extends Component {
             <Task
               id={item.id}
               description={item.description}
+              isCompleted={item.isCompleted}
               onDelete={this.props.onDelete}
+              onDoTask={this.props.onDoTask}
             />
           )}
         />

@@ -4,16 +4,14 @@ import { StyleSheet, Text, View, CheckBox, Button } from "react-native";
 class Task extends Component {
   state = {
     //description: "Call mum",
-    isCompleted: false
+    //isCompleted: false
   };
   render() {
     return (
       <View style={styles.container}>
         <CheckBox
-          value={this.state.isCompleted}
-          onValueChange={() =>
-            this.setState({ isCompleted: !this.state.isCompleted })
-          }
+          value={this.props.isCompleted}
+          onValueChange={() => this.props.onDoTask(this.props.id)}
         />
         <Text style={styles.description}>{this.props.description}</Text>
         <Button
