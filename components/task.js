@@ -1,28 +1,37 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, CheckBox, Button } from "react-native";
+import { connect } from "react-redux";
+import { toggleTask, deleteTask } from "../actions/actionCreators";
 
 class Task extends Component {
-  state = {
-    //description: "Call mum",
-    //isCompleted: false
-  };
+  state = {};
   render() {
     return (
       <View style={styles.container}>
         <CheckBox
           value={this.props.isCompleted}
-          onValueChange={() => this.props.onDoTask(this.props.id)}
+          onValueChange={() => this.props.toggleTask(this.props.id)}
         />
         <Text style={styles.description}>{this.props.description}</Text>
         <Button
           color="#F44336"
-          onPress={() => this.props.onDelete(this.props.id)}
+          onPress={() => this.props.deleteTask(this.props.id)}
           title="Delete"
         />
       </View>
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  toggleTask: id => dispatch(toggleTask(id)),
+  deleteTask: id => dispatch(deleteTask(id))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Task);
 
 const styles = StyleSheet.create({
   container: {
@@ -44,5 +53,3 @@ const styles = StyleSheet.create({
     color: "#F44336"
   }
 });
-
-export default Task;

@@ -2,13 +2,11 @@ import React, { Component } from "react";
 import { Text, StyleSheet, View } from "react-native";
 
 class Header extends Component {
-  state = {
-    title: "To Do List"
-  };
+  state = {};
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>{this.state.title}</Text>
+        <Text style={styles.text}>{"To Do List"}</Text>
       </View>
     );
   }
@@ -16,8 +14,10 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
+    //flex: 1,
+    height: 70,
+    width: "100%",
+    justifyContent: "flex-end",
     alignItems: "center",
     backgroundColor: "#388E3C",
     borderBottomLeftRadius: 8,

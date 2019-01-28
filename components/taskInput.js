@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import { TextInput, StyleSheet, View, Button } from "react-native";
+import { addTask } from "../actions/actionCreators";
+import { connect } from "react-redux";
+
+let nextTaskId = 4;
 
 class TaskInput extends Component {
   state = {
-    text: ""
+    text: "",
+    isDisabled: true
   };
   render() {
     return (
@@ -13,16 +18,22 @@ class TaskInput extends Component {
           placeholder="Add a task..."
           value={this.state.text}
           placeholderTextColor="white"
-          onChangeText={text => this.setState({ text: text })}
+          onChangeText={text =>
+            this.setState({
+              text,
+              isDisabled: text.match(/^\s*$/) ? true : false
+            })
+          }
         />
         <View style={{ marginRight: 10 }}>
           <Button
             color="#388E3C"
             onPress={() => {
-              this.props.onAddTask(this.state.text);
-              this.state.text = "";
+              this.props.addTask(nextTaskId++, this.state.text);
+              this.setState({ text: "", isDisabled: true });
             }}
             title="Add"
+            disabled={this.state.isDisabled}
           />
         </View>
       </View>
@@ -30,9 +41,21 @@ class TaskInput extends Component {
   }
 }
 
+mapDispatchToProps = dispatch => ({
+  addTask: (id, description) => dispatch(addTask(id, description))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(TaskInput);
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    //flex: 1,
+    height: 50,
+    width: "100%",
+    paddingRight: 10,
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
@@ -46,5 +69,3 @@ const styles = StyleSheet.create({
     marginLeft: 10
   }
 });
-
-export default TaskInput;

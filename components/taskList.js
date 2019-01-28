@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import Task from "./task";
+import { connect } from "react-redux";
 
 class TaskList extends Component {
   state = {};
@@ -11,16 +12,14 @@ class TaskList extends Component {
     return (
       <View style={styles.container}>
         <FlatList
-          //style={styles.container}
           data={this.props.tasks}
           keyExtractor={this._keyExtractor}
+          extraData={this.props.tasks}
           renderItem={({ item }) => (
             <Task
               id={item.id}
               description={item.description}
               isCompleted={item.isCompleted}
-              onDelete={this.props.onDelete}
-              onDoTask={this.props.onDoTask}
             />
           )}
         />
@@ -28,6 +27,14 @@ class TaskList extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    tasks: state
+  };
+};
+
+export default connect(mapStateToProps)(TaskList);
 
 const styles = StyleSheet.create({
   container: {
@@ -38,5 +45,3 @@ const styles = StyleSheet.create({
     backgroundColor: "#D9D9D9"
   }
 });
-
-export default TaskList;
